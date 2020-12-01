@@ -1,6 +1,7 @@
+require 'pathname'
+
 class LogParser
-  attr_reader :log_file
-  attr_accessor :web_log
+  attr_accessor :web_log, :log_file
 
   def initialize(log_file, web_log: WebLog.new)
     @log_file = log_file
@@ -8,6 +9,16 @@ class LogParser
   end
 
   def execute
-    File.foreach(log_file) { |line| web_log.add_view(line.split(" ")) }
+    File.foreach(log_file) do |line|
+      data = line.split(" ")
+      raise FileFormatError if data.length != 2
+      web_log.add_view(data)
+    end
+  end
+end
+
+class FileFormatError < StandardError
+  def initialize(msg="The file data appears to be in an incorrect format")
+    super
   end
 end
