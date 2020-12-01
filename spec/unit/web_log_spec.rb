@@ -3,19 +3,25 @@ require_relative '../../lib/web_log.rb'
 RSpec.describe WebLog do
   subject { described_class.new }
 
-  it "can add new page views to the log" do
+  def add_test_view
     subject.add_view(["about/", "123.456.789"])
+  end
+
+  it "can add new page views to the log" do
+    add_test_view
     expect(subject.views.size).to be(1)
   end
 
   it "returns the url of a particular page view" do
-    subject.add_view(["about/", "123.456.789"])
+    add_test_view
     page_view = subject.views.first
     expect(page_view.url).to eq("about/")
   end
 
   it "returns the ip address of a particular page view" do
-
+    add_test_view
+    page_view = subject.views.first
+    expect(page_view.ip_address).to eq("123.456.789")
   end
 
   it "holds a history of page views in the correct format"
