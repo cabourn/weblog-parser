@@ -35,5 +35,13 @@ web_log.add_view(new_page_view)
 
 pp web_log.views.last
 
-> #<struct WebLog::PageView url="/about", ip_address="543.910.244.929">
+> #<struct WebLog::PageView url="/about", ip_address="123.456.789.123">
+```
+
+Further, the WebLog class comes with a default formatter for the command line, but can be changed at runtime to a newly created formatter such as CSV. Please note that the below example assumes a CSV formatter class has been coded to be plugged into the current class.
+
+```ruby
+web_log = WebLog.new
+new_formatter = CsvFormatter.new
+web_log.formatter = new_formatter
 ```
