@@ -14,6 +14,10 @@ RSpec.describe WebLog do
     expect(page_view.url).to eq("about/")
   end
 
+  it "returns the ip address of a particular page view" do
+
+  end
+
   it "holds a history of page views in the correct format"
   it "returns a set of unique page views"
 end
