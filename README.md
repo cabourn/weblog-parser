@@ -32,4 +32,8 @@ The log is parsed into a WebLog object which contains further methods such as th
 web_log = WebLog.new
 new_page_view = ["/about", '123.456.789.123']
 web_log.add_view(new_page_view)
+
+pp web_log.views.last
+
+> #<struct WebLog::PageView url="/about", ip_address="543.910.244.929">
 ```
