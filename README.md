@@ -44,4 +44,5 @@ Further, the WebLog class comes with a default formatter for the command line, b
 web_log = WebLog.new
 new_formatter = CsvFormatter.new
 web_log.formatter = new_formatter
+web_log.output
 ```
