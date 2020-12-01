@@ -25,5 +25,17 @@ RSpec.describe WebLog do
   end
 
   it "holds a history of page views in the correct format"
-  it "returns a set of unique page views"
+
+  it "returns a set of unique page views" do
+    views = [
+      ["about/", "123.456.789"],
+      ["contact/", "123.456.789"],
+      ["products/", "123.456.789"],
+      ["about/", "123.456.789"],
+      ["about/", "789.456.123"]
+    ]
+    views.each { |view| subject.add_view(view) }
+
+    expect(subject.unique_views.size).to eq(4)
+  end
 end
