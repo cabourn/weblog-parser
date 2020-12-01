@@ -19,7 +19,7 @@ RSpec.describe Formatter do
 
   let(:expected_unique_views_output) do
     <<~RESULTS
-      Total Page Unique Views
+      Total Unique Page Views
       /about 15 unique views
       /contact 12 unique views
       /products 10 unique views
@@ -28,10 +28,10 @@ RSpec.describe Formatter do
   end
 
   it "prints results in the correct format" do
-    expect { subject.output("Total Page Views", "views", results) }.to output(expected_views_output).to_stdout
+    expect { subject.output("Total Page Views", "view", results) }.to output(expected_views_output).to_stdout
   end
 
   it "prints unique results in the correct format" do
-    expect { subject.output("Total Page Unique Views", "unique views", results) }.to output(expected_unique_views_output).to_stdout
+    expect { subject.output("Total Unique Page Views", "unique view", results) }.to output(expected_unique_views_output).to_stdout
   end
 end

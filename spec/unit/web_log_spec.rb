@@ -2,6 +2,15 @@ require_relative '../../lib/web_log.rb'
 
 RSpec.describe WebLog do
   subject { described_class.new }
+  let(:views) {
+    views = [
+      ["/about", "123.456.789"],
+      ["/contact", "123.456.789"],
+      ["/products", "123.456.789"],
+      ["/about", "123.456.789"],
+      ["/about", "789.456.123"]
+    ]
+  }
 
   def add_test_view
     subject.add_view(["about/", "123.456.789"])
@@ -25,15 +34,26 @@ RSpec.describe WebLog do
   end
 
   it "returns a set of unique page views" do
-    views = [
-      ["/about", "123.456.789"],
-      ["/contact", "123.456.789"],
-      ["/products", "123.456.789"],
-      ["/about", "123.456.789"],
-      ["/about", "789.456.123"]
-    ]
     views.each { |view| subject.add_view(view) }
-
     expect(subject.unique_views.size).to eq(4)
+  end
+
+  it "outputs in the correct format" do
+    expected_output =
+      <<~RESULTS
+        Total Page Views
+        /about 3 views
+        /contact 1 view
+        /products 1 view
+
+        Total Unique Page Views
+        /about 2 unique views
+        /contact 1 unique view
+        /products 1 unique view
+
+      RESULTS
+
+    views.each { |view| subject.add_view(view) }
+    expect { subject.output }.to output(expected_output).to_stdout
   end
 end
