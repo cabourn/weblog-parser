@@ -9,4 +9,8 @@ class WebLog
   def add_view(view)
     views.push(PageView.new(view[0], view[1]))
   end
+
+  def unique_views
+    views.uniq
+  end
 end

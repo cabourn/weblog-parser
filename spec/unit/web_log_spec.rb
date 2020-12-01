@@ -24,8 +24,6 @@ RSpec.describe WebLog do
     expect(page_view.ip_address).to eq("123.456.789")
   end
 
-  it "holds a history of page views in the correct format"
-
   it "returns a set of unique page views" do
     views = [
       ["about/", "123.456.789"],
