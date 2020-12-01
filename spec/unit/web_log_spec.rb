@@ -26,11 +26,11 @@ RSpec.describe WebLog do
 
   it "returns a set of unique page views" do
     views = [
-      ["about/", "123.456.789"],
-      ["contact/", "123.456.789"],
-      ["products/", "123.456.789"],
-      ["about/", "123.456.789"],
-      ["about/", "789.456.123"]
+      ["/about", "123.456.789"],
+      ["/contact", "123.456.789"],
+      ["/products", "123.456.789"],
+      ["/about", "123.456.789"],
+      ["/about", "789.456.123"]
     ]
     views.each { |view| subject.add_view(view) }
 
